@@ -1,9 +1,11 @@
 package org.poker.pokerGauss.models;
 
-public class Card {
+import org.poker.pokerGauss.utils.ComparationUtils;
 
-    private int number;
-    private String suit;
+public class Card implements Comparable<Card> {
+
+    private final int number;
+    private final String suit;
 
     public Card(int number, String suit) {
         this.number = number;
@@ -16,5 +18,17 @@ public class Card {
 
     public String getSuit() {
         return suit;
+    }
+
+    public int compareTo (Card c){
+        if (number == c.number){
+            if (ComparationUtils.isASuperiorSuit(suit, c.suit)){
+                return 1;
+            };
+        }
+        if (ComparationUtils.isASuperiorNumber(number, c.number)){
+            return 1;
+        }
+        return -1;
     }
 }

@@ -4,4 +4,5 @@ import org.poker.pokerGauss.models.Game;
 
 public interface GameBuilder {
 
+    public void build();
 }

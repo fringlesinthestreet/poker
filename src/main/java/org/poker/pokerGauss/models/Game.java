@@ -13,10 +13,14 @@ public class Game {
     private List<Player> players;
 
     // utilizamos el constructor de partidas por defecto
-    private GameBuilder builder = new DefaultGameBuilder(this);
+    private final GameBuilder builder = new DefaultGameBuilder(this);
 
     public Game(long numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
+    }
+
+    public void buildGame() {
+        builder.build();
     }
 
     public Player getWinner() {

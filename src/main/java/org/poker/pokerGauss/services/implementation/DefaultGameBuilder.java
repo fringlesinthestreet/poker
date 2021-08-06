@@ -9,4 +9,8 @@ public class DefaultGameBuilder implements GameBuilder {
     public DefaultGameBuilder(Game game) {
         this.game = game;
     }
+
+    public void build() {
+
+    }
 }
