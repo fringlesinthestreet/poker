@@ -1,5 +1,6 @@
 package org.poker.pokerGauss.models;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.List;
 import org.poker.pokerGauss.services.implementation.DefaultGameBuilder;
@@ -17,10 +18,11 @@ public class Game {
 
     public Game(long numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
+        this.players = new ArrayList<>();
     }
 
     public void buildGame() {
-        builder.build();
+        builder.buildGame();
     }
 
     public Player getWinner() {
@@ -39,7 +41,11 @@ public class Game {
         this.players = players;
     }
 
-    public void addPlayer(Player player){
-        this.players.add(player);
+    public void addPlayer(List<Card> hand){
+        this.players.add(new Player(hand, playerIdCounter.getAndIncrement()));
+    }
+
+    public long getNumberOfPlayers() {
+        return numberOfPlayers;
     }
 }

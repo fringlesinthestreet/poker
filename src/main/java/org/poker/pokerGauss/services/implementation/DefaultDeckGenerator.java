@@ -5,9 +5,7 @@ import org.poker.pokerGauss.services.DeckGenerator;
 import org.poker.pokerGauss.utils.MyRange;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class DefaultDeckGenerator implements DeckGenerator {
@@ -16,7 +14,7 @@ public class DefaultDeckGenerator implements DeckGenerator {
     public static final int HIGHEST_CARD = 13;
     public static final String[] SUITS = {"s", "h", "c", "d"};
 
-    public Stream generateDeck() {
+    public ArrayList<Card> generateDeck() {
         ArrayList<Card> cardArray = new ArrayList<>();
         MyRange cardRange = new MyRange(LOWEST_CARD, HIGHEST_CARD);
         for (int number : cardRange) {
@@ -24,7 +22,7 @@ public class DefaultDeckGenerator implements DeckGenerator {
                 cardArray.add(new Card(number, suit));
             }
         }
-        Collections.sort(cardArray);
-        return Stream.of(cardArray);
+        Collections.shuffle(cardArray);
+        return cardArray;
     }
 }

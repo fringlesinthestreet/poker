@@ -1,5 +1,6 @@
 package org.poker.pokerGauss.models;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -12,6 +13,7 @@ public class Player {
     private long playerId;
 
     public Player(List<Card> hand, long playerId) {
+        Collections.sort(hand);
         this.hand = hand;
         this.playerId = playerId;
     }
