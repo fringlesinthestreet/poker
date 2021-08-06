@@ -1,4 +1,4 @@
-package org.poker.pokerGauss.v1.exceptions;
+package org.poker.pokerGauss.controllers.exceptions;
 
 public class DefaultException {
     private final long statusCode;

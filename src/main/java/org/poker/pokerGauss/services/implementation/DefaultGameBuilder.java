@@ -2,12 +2,10 @@ package org.poker.pokerGauss.services.implementation;
 
 import org.poker.pokerGauss.models.Card;
 import org.poker.pokerGauss.models.Game;
-import org.poker.pokerGauss.models.Player;
 import org.poker.pokerGauss.services.DeckGenerator;
 import org.poker.pokerGauss.services.GameBuilder;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class DefaultGameBuilder implements GameBuilder {
     private final Game game;

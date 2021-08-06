@@ -2,10 +2,6 @@ package org.poker.pokerGauss.models;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-
-import org.poker.pokerGauss.models.Card;
-
 
 public class Player {
 
