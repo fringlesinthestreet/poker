@@ -15,7 +15,7 @@ public class DefaultDeckGenerator implements DeckGenerator {
 
     public ArrayList<Card> generateDeck() {
         ArrayList<Card> cardArray = new ArrayList<>();
-        MyRange cardRange = new MyRange(LOWEST_CARD, HIGHEST_CARD + 1);
+        MyRange cardRange = new MyRange(LOWEST_CARD, HIGHEST_CARD);
         for (int number : cardRange) {
             for (String suit : SUITS) {
                 cardArray.add(new Card(number, suit));

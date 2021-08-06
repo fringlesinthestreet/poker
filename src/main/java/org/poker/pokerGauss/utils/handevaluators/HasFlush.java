@@ -17,6 +17,6 @@ public class HasFlush  extends HandEvaluator {
 
     @Override
     public boolean hasThisPokerHand(Player player){
-        return true;
+        return HandEvaluator.hasFlush(player.getHand());
     }
 }

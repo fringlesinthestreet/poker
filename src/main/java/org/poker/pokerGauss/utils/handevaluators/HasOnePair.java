@@ -3,6 +3,8 @@ package org.poker.pokerGauss.utils.handevaluators;
 import org.poker.pokerGauss.models.Player;
 import org.poker.pokerGauss.utils.HandEvaluator;
 
+import java.util.HashMap;
+
 public class HasOnePair extends HandEvaluator {
 
     @Override
@@ -17,6 +19,13 @@ public class HasOnePair extends HandEvaluator {
 
     @Override
     public boolean hasThisPokerHand(Player player){
-        return true;
+        HashMap<Integer, Integer> hashmap = HandEvaluator.digestNumbersToHashMap(player.getHand());
+        boolean HasOnePair = false;
+        for (Integer value : hashmap.values()) {
+            if (value == 2) {
+                HasOnePair = true;
+            }
+        }
+        return HasOnePair;
     }
 }

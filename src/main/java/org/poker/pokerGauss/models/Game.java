@@ -8,6 +8,7 @@ import org.poker.pokerGauss.services.WinnerSelector;
 import org.poker.pokerGauss.services.gamebuilders.DefaultGameBuilder;
 import org.poker.pokerGauss.services.GameBuilder;
 import org.poker.pokerGauss.services.winnerselectors.DefaultWinnerSelector;
+import org.poker.pokerGauss.utils.HandEvaluator;
 import org.poker.pokerGauss.utils.exceptions.IncorrectNumberOfPlayersException;
 
 public class Game {
@@ -17,6 +18,7 @@ public class Game {
     private Player winner;
     private List<Player> players;
     private String gameWinningPlay;
+    private HandEvaluator gameWinningEvaluator;
 
     // utilizamos el constructor de partidas por defecto
     private final GameBuilder builder = new DefaultGameBuilder(this);
@@ -69,5 +71,13 @@ public class Game {
 
     public void setGameWinningPlay(String gameWinningPlay) {
         this.gameWinningPlay = gameWinningPlay;
+    }
+
+    public HandEvaluator gameWinningEvaluatorGetter (){
+        return gameWinningEvaluator;
+    }
+
+    public void gameWinningEvaluatorSetter(HandEvaluator gameWinningEvaluator){
+        this.gameWinningEvaluator = gameWinningEvaluator;
     }
 }

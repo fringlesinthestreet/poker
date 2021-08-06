@@ -17,6 +17,6 @@ public class HasStraight  extends HandEvaluator {
 
     @Override
     public boolean hasThisPokerHand(Player player){
-        return true;
+        return HandEvaluator.hasStraight(player.getHand());
     }
 }

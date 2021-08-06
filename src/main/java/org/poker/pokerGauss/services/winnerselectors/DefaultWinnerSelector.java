@@ -6,6 +6,8 @@ import org.poker.pokerGauss.models.Player;
 import org.poker.pokerGauss.services.WinnerSelector;
 import org.poker.pokerGauss.utils.HandEvaluator;
 import org.poker.pokerGauss.utils.MyRange;
+import org.poker.pokerGauss.utils.handevaluators.HasStraight;
+import org.poker.pokerGauss.utils.handevaluators.HasStraightFlush;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,6 +53,7 @@ public class DefaultWinnerSelector implements WinnerSelector {
             */
 
             game.setGameWinningPlay(evaluator.getName());
+            game.gameWinningEvaluatorSetter(evaluator);
             if (posibleWinners.size() > 0) {
                 break;
             }
@@ -64,7 +67,13 @@ public class DefaultWinnerSelector implements WinnerSelector {
         Se debe revisar si más de un jugador tuvo esa misma
         mano. En ese caso, se debe elegir por carta mayor.
         */
+
         if (posibleWinners.size() > 1) {
+            // Se tiene un caso borde en este caso, que es con la escala
+            if (game.gameWinningEvaluatorGetter().getClass() == HasStraight.class || game.gameWinningEvaluatorGetter().getClass() == HasStraightFlush.class){
+                posibleWinners = getBorderCaseBreaker(posibleWinners);
+            }
+
             posibleWinners = getFirstTieBreaker(posibleWinners);
             current_winner = posibleWinners.get(0);
         }
@@ -78,6 +87,44 @@ public class DefaultWinnerSelector implements WinnerSelector {
     }
 
     /*
+        Se revisa el caso borde de que la escala sea A 5 4 3 2 (que es la peor).
+
+        Se dejan en una lista (tieBreakerWinners) los jugadores que no poseen
+        esa escala. Si al finalizar de chequear, no hay nadie en esa lista,
+        entonces significa que todos tienen el caso borde y se envía la lista
+        original. En caso contrario, se envía la lista de los que no poseen esa
+        mano, es decir, la lista tieBreakerWinners.
+     */
+    private ArrayList<Player> getBorderCaseBreaker(ArrayList<Player> posibleWinners) {
+        int[] borderAux = {1, 5, 4, 3, 2};
+
+        ArrayList<Player> tieBreakerWinners = new ArrayList<>();
+        Card current_card;
+        int current_border_card;
+        MyRange positionRange = new MyRange(1, HAND_SIZE);
+        for (int current_position : positionRange) {
+            current_border_card = borderAux[current_position];
+
+            // Primero debemos elegir la carta más alta por ronda.
+            for (Player current_player : posibleWinners){
+                current_card = getCardFromHand(current_player, current_position);
+
+                if (tieBreakerWinners.contains(current_player)){
+                    continue;
+                }
+
+                if (current_border_card != current_card.getNumber()){
+                    tieBreakerWinners.add(current_player);
+                }
+            }
+        }
+        if (tieBreakerWinners.size() > 0){
+            return tieBreakerWinners;
+        }
+        return posibleWinners;
+    }
+
+    /*
         En este primer desempate se define solo por número. El que tiene
         un número superior a todos los otros gana.
         Puede quedar más de un jugador como posible ganador luego de este desempate.
@@ -87,7 +134,7 @@ public class DefaultWinnerSelector implements WinnerSelector {
         Card current_card;
         Card current_biggest_card;
         int current_biggest_number;
-        MyRange positionRange = new MyRange(1, HAND_SIZE + 1);
+        MyRange positionRange = new MyRange(1, HAND_SIZE);
         for (int current_position : positionRange) {
             current_biggest_card = null;
 
