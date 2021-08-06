@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.List;
 import org.poker.pokerGauss.services.implementation.DefaultGameBuilder;
 import org.poker.pokerGauss.services.GameBuilder;
+import org.poker.pokerGauss.utils.exceptions.IncorrectNumberOfPlayersException;
 
 public class Game {
 
@@ -17,6 +18,9 @@ public class Game {
     private final GameBuilder builder = new DefaultGameBuilder(this);
 
     public Game(long numberOfPlayers) {
+        if (1 > numberOfPlayers || numberOfPlayers > 10){
+            throw new IncorrectNumberOfPlayersException();
+        }
         this.numberOfPlayers = numberOfPlayers;
         this.players = new ArrayList<>();
     }
