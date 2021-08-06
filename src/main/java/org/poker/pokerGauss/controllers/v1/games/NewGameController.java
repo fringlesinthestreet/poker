@@ -14,7 +14,7 @@ public class NewGameController extends V1Controller {
     public Game newGame(@RequestParam(value = "players") long numberOfPlayers){
         Game game = new Game(numberOfPlayers);
         game.buildGame();
-
+        game.selectWinner();
         return game;
     }
 }

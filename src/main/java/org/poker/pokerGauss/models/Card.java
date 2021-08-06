@@ -1,6 +1,6 @@
 package org.poker.pokerGauss.models;
 
-import org.poker.pokerGauss.utils.ComparationUtils;
+import org.poker.pokerGauss.utils.ComparisonUtils;
 
 public class Card implements Comparable<Card> {
 
@@ -22,11 +22,11 @@ public class Card implements Comparable<Card> {
 
     public int compareTo (Card c){
         if (number == c.number){
-            if (ComparationUtils.isASuperiorSuit(suit, c.suit)){
+            if (ComparisonUtils.isASuperiorSuit(suit, c.suit)){
                 return 1;
             };
         }
-        if (ComparationUtils.isASuperiorNumber(number, c.number)){
+        if (ComparisonUtils.isASuperiorNumber(number, c.number)){
             return 1;
         }
         return -1;

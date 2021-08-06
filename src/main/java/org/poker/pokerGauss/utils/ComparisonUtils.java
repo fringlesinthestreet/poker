@@ -1,6 +1,6 @@
 package org.poker.pokerGauss.utils;
 
-public class ComparationUtils {
+public class ComparisonUtils {
 
     public static boolean isASuperiorSuit (String suit1, String suit2) {
         if (suit1.equals(suit2)){

@@ -1,4 +1,4 @@
-package org.poker.pokerGauss.services.implementation;
+package org.poker.pokerGauss.services.deckgenerators;
 
 import org.poker.pokerGauss.models.Card;
 import org.poker.pokerGauss.services.DeckGenerator;
@@ -15,7 +15,7 @@ public class DefaultDeckGenerator implements DeckGenerator {
 
     public ArrayList<Card> generateDeck() {
         ArrayList<Card> cardArray = new ArrayList<>();
-        MyRange cardRange = new MyRange(LOWEST_CARD, HIGHEST_CARD);
+        MyRange cardRange = new MyRange(LOWEST_CARD, HIGHEST_CARD + 1);
         for (int number : cardRange) {
             for (String suit : SUITS) {
                 cardArray.add(new Card(number, suit));
