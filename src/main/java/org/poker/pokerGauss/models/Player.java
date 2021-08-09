@@ -9,6 +9,7 @@ public class Player {
     private long playerId;
 
     public Player(List<Card> hand, long playerId) {
+        // Guardamos la mano ordenada
         Collections.sort(hand);
         this.hand = hand;
         this.playerId = playerId;

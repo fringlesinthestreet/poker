@@ -20,6 +20,9 @@ public class Card implements Comparable<Card> {
         return suit;
     }
 
+    /*
+        Se hace override este método para que sea ordenable un array de Cards
+     */
     public int compareTo (Card c){
         if (number == c.number){
             if (ComparisonUtils.isASuperiorSuit(suit, c.suit)){
