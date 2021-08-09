@@ -9,8 +9,8 @@ public class Player {
     private long playerId;
 
     public Player(List<Card> hand, long playerId) {
-        // Guardamos la mano ordenada
-        Collections.sort(hand);
+        // Ordenamos la mano para visualizarla más fácil
+        Collections.sort(hand, Collections.reverseOrder());
         this.hand = hand;
         this.playerId = playerId;
     }

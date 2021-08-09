@@ -134,7 +134,7 @@ public class DefaultWinnerSelector implements WinnerSelector {
         Card current_card;
         Card current_biggest_card;
         int current_biggest_number;
-        MyRange positionRange = new MyRange(1, HAND_SIZE);
+        MyRange positionRange = new MyRange(0, HAND_SIZE);
         for (int current_position : positionRange) {
             current_biggest_card = null;
 

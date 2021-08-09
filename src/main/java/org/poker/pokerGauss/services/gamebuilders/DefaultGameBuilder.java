@@ -30,9 +30,6 @@ public class DefaultGameBuilder implements GameBuilder {
             current_hand_size += 1;
 
             if (current_hand_size == HAND_SIZE){
-                // Ordenamos la mano para visualizarla más fácil
-                Collections.sort(hand, Collections.reverseOrder());
-
                 // Guardamos la mano del jugador
                 game.addPlayer(hand);
 
